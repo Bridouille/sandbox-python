@@ -7,7 +7,6 @@ def pb3(nb):
         if nb % i == 0:
             nb /= i
             last = i
-        i += 1
     print(last)
 
 if __name__ == "__main__":
