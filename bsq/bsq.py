@@ -4,6 +4,7 @@ import sys, os, re
 
 class bsq:
    def  __init__(self, filename):
+      self.replace = "x"
       try:
          self.file = open(filename, "r")
       except IOError as e:
@@ -40,7 +41,7 @@ class bsq:
 
    def placeSquare(self, size, x, y):
       toFind = "." * size
-      if len(self.lines[0]) <= x + size or len(self.lines) <= y + size:
+      if len(self.lines[0]) < x + size or len(self.lines) < y + size:
          return False
       for i in range(0, size):
          for j in range(0, size):
@@ -54,9 +55,9 @@ class bsq:
       self.x = 0
       self.y = 0
 
-      for y in range(0, len(self.lines) - 1):
+      for y in range(0, len(self.lines)):
          for x in range(0, len(self.lines[y])):
-            while self.placeSquare(self.squareSize + 1, x, y) == True:
+            while self.placeSquare(self.squareSize + 1, x, y):
                self.squareSize += 1
                self.y = y;
                self.x = x;
@@ -70,7 +71,7 @@ class bsq:
       print(str(self.size))
       for line in self.lines:
          if y >= self.y and y < self.y + self.squareSize:
-            line = line[:self.x] + "x" * self.squareSize + line[self.x + self.squareSize:]
+            line = line[:self.x] + self.replace * self.squareSize + line[self.x + self.squareSize:]
          print(line)
          y += 1
 
