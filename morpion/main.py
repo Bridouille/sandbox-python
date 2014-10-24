@@ -71,9 +71,8 @@ class Morpion():
 
 	def endGame(self):
 		game = self.game
-		for line in game: # check lines
-			search = line[0]
-			if line == [search, search, search] and search != 0:
+		for i in range(3): # check lines
+			if game[0][i] == game[1][i] and game[1][i] == game[2][i] and game[0][i] != 0:
 				return True
 		for i in range(3): # check columns
 			search = game[0][i];
